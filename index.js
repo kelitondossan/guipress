@@ -5,6 +5,11 @@ const connection = require("./database/database")
 const categoriacontroler = require("./categorias/categoriasControler")
 const artigoscontroler = require("./artigos/artigocontroler")
 
+
+const categoria = require("./categorias/categoria");
+
+const artigo = require("./artigos/artigo");
+
 //view engine chama com set e nao com get
 app.set('view engine','ejs');
 
