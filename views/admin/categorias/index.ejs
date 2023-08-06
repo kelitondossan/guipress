@@ -24,8 +24,11 @@
                     <th><%= categoria.slug %></th>
                     <th>
                         <button class="btn btn-warning">Editar</button>
+                        <form method="POST" action="/categorias/delete" style="display:inline;" onsubmit="comfirmarDelecao(event,this)">
+                            <input type="hidden" name="id" value="<%= categoria.id %>" >
+                            <button class="btn btn-danger">Deletar</button>
+                        </form>
                         
-                        <button class="btn btn-danger">Deletar</button>
                     </th>
                 </tr>
             <%}) %>
@@ -34,3 +37,20 @@
     </table>
 </div>
 <%- include  ("../../partials/footer.ejs") %>
+<script>
+    //funçao para usuario comfimar se quer ou não deletar sua categoira muito para usuarios inseguros kkkk
+ function comfirmarDelecao(event, form){
+    event.preventDefault(); //impede que o formulario seja submetido, isso significa que so vai deletar a categoria se o ususario clicar em comfirmar
+
+    var decisao = confirm("VOCÊ QUER DELETAR ESTÁ CATEGORIA?");
+       if(decisao){
+        form.submit();// enviar o resultado do formulario se for verdadeira a deleção
+        //para chamar a funçãoform.submit, va no formulario acrescente o this
+        console.log("eu escolhi deletar!");
+       }else{
+        console.log("Não quero deletar, foi um acidente");
+       }
+
+    console.log("O FORMULARIO NÃO FOI ENVIADO");
+ }
+</script>
