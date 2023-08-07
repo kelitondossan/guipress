@@ -1,0 +1,45 @@
+<%- include ("../../partials/header.ejs") %>
+<%- include ("../../partials/navbar.ejs") %>
+<br>
+<div class="container">
+    <hr>
+    <div class="card">
+  <div class="card-header">
+    <h2> Novo artigo </h2>
+</div>
+<div class="card-body">
+ <form method="POST" action="/artigos/save">
+    <input class="form-control"  type="text" name="title" placeholder="Defina o titulo do Artigo">
+    <br>
+    <textarea class="form-control" placeholder="Escreva o artigo aqui!" cols="30" rows="4" name="body" id="artigo"></textarea>
+    <label>Categoria</label>
+    <select name="categoria" class="form-control">
+      <% categorias.forEach((categoria) => { %>
+        <option value="<%= categoria.id %>"><%= categoria.title %></option>
+     <% }) %>
+     <br>
+    </select>
+    <br>
+    <button class=" btn btn-success">Cadastrar</button>
+ </form>
+</div>
+</div>
+</div>
+
+
+<%- include  ("../../partials/footer.ejs") %>
+
+
+  
+<script src="/tinymce/tinymce.min.js" referrerpolicy="origin"></script>
+<script>
+//ativando o tinymce para atiavr edição especia na textarea com os recursos plugins 
+ tinymce.init({
+  language: 'pt_BR',
+  selector: "#artigo",
+  plugins: 'advlist autolink link image lists print preview hr searchreplace wordcount fullscreen insertdatetime media save table paste emoticons',
+  toolbar: 'undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image',
+
+ })
+
+</script>

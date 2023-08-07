@@ -2,8 +2,8 @@
 <%- include ("../../partials/navbar.ejs") %>
 <div class="container">
     <hr>
-    <h2>Categorias</h2>
-    <a class="btn btn-success" href="/admin/categorias/new">Criar nova categoria</a>
+    <h2>Artigos</h2>
+    <a class="btn btn-success" href="/admin/artigos/new">Criar novo artigo</a>
     <hr>
 
     <table class="table table-bordered">
@@ -12,28 +12,19 @@
                 <th>ID</th>
                 <th>Titulo</th>
                 <th>Slug</th>
+                <th>categotia</th>
                 <th>Ações</th>
             </tr>
         </thead>
         
         <tbody>
-            <% categorias.forEach(categoria =>{ %>
-                <tr>
-                    <th><%= categoria.id %></th>
-                    <th><%= categoria.title %></th>
-                    <th><%= categoria.slug %></th>
-                    <th>
-                        <a href="/admin/categorias/edit/<%= categoria.id %>" class="btn btn-warning">Editar</a>
-
-
-                        <form method="POST" action="/categorias/delete" style="display:inline;" onsubmit="comfirmarDelecao(event,this)">
-                            <input type="hidden" name="id" value="<%= categoria.id %>" >
-                            <button class="btn btn-danger">Deletar</button>
-                        </form>
-                        
-                    </th>
-                </tr>
-            <%}) %>
+             <% artigos.forEach(artigo =>{
+                <td>artigo.id</td>
+                <td>artigo.title</td>
+                <td>artigo.slug</td>
+                <td>artigo.categoria</td>
+                <td>artigo.acoes</td>
+            <% }) %>
         </tbody>
 
     </table>

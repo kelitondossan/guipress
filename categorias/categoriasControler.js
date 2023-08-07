@@ -16,7 +16,7 @@ router.get("/admin/categorias/new", (req, res) => {
         title: title,
         slug: slugify(title)
        }).then(() =>{
-         res.redirect("/");
+         res.redirect("/admin/categorias");
        })
 
       }else{
@@ -77,6 +77,20 @@ router.get("/admin/categorias/new", (req, res) => {
        return res.redirect("/admin/categorias");
     })
   })
+
+  //rota de atualização dos dados da categoria
+router.post("/categorias/update", (req,res) =>{
+   var id = req.body.id;
+   var title = req.body.title;
+
+   categoria.update({title: title, slug: slugify(title)}, {
+      where: {
+         id: id
+      }
+   }).then(() => {
+      return res.redirect("/admin/categorias");
+   })
+})
 
 
 module.exports = router;
