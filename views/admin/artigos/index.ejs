@@ -19,11 +19,18 @@
         
         <tbody>
              <% artigos.forEach(artigo => { %>
+                <tr>
                 <td><%= artigo.id %></td>
                 <td><%= artigo.title %></td>
                 <td><%= artigo.slug %></td>
-                <td><%= artigo.categoriaId %></td>
-                <td>Ações</td>
+                <td><%= artigo.categoria.title %></td>
+                <td>                   
+                    <form method="POST" action="/artigos/delete" style="display:inline;" onsubmit="comfirmarDelecao(event,this)">
+                        <input type="hidden" name="id" value="<%= artigo.id %>" >
+                        <button class="btn btn-danger">Deletar</button>
+                    </form>
+                </td>
+            </tr>
             <% }) %>
         </tbody>
 
@@ -31,11 +38,11 @@
 </div>
 <%- include  ("../../partials/footer.ejs") %>
 <script>
-    //funçao para usuario comfimar se quer ou não deletar sua categoira muito para usuarios inseguros kkkk
+    //funçao para usuario comfimar se quer ou não deletar sua categoira muito bom para usuarios inseguros kkkk
  function comfirmarDelecao(event, form){
     event.preventDefault(); //impede que o formulario seja submetido, isso significa que so vai deletar a categoria se o ususario clicar em comfirmar
 
-    var decisao = confirm("VOCÊ QUER DELETAR ESTÁ CATEGORIA?");
+    var decisao = confirm("VOCÊ QUER DELETAR ESTE ArTIGO?");
        if(decisao){
         form.submit();// enviar o resultado do formulario se for verdadeira a deleção
         //para chamar a funçãoform.submit, va no formulario acrescente o this

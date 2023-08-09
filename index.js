@@ -36,8 +36,42 @@ app.use("/", artigoscontroler);
 
 //chamndo a viwes da pasta views para mostrar no navgador
 app.get("/", (req, res) => {
-      res.render("index");
+    artigo.findAll({
+        order:[
+            ['id', 'DESC']
+        ]
+    }).then(artigos =>{
+        categoria.findAll().then(categorias =>{
+            res.render("index",{artigos: artigos, categorias: categorias});
+        });
+       
+    });
+      
 })
+
+app.get("/:slug", (req,res) =>{
+    var slug = req.params.slug;
+    artigo.findOne({
+        where: {
+            slug: slug
+        }
+
+    }).then(artigo =>{
+        if(artigo != undefined){
+            categoria.findAll().then(categorias =>{
+                res.render("artigos",{artigo: artigo, categorias: categorias});
+            });        
+        }else{
+            res.redirect("/");
+        }
+    
+    }).catch( err =>{
+        res.redirect("/");
+    }); 
+})
+
+
+
 
 app.listen(8080, () => {
 console.log("servidor esta rodando na porta 8080!");

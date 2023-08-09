@@ -31,6 +31,7 @@ router.get("/admin/categorias/new", (req, res) => {
      });
    });
 
+   //rota deleção de categoria
    router.post("/categorias/delete", (req,res) =>{
       var id = req.body.id;
   //verificando de der algun resultado indefinido       
